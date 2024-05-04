@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tugas 2</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('461150.jpg'); /* Ganti URL gambar dengan URL gambar yang sebenarnya */
+      background-size: cover; /* Membuat gambar latar belakang menutupi seluruh area */
+      background-position: center; /* Posisi gambar latar belakang di tengah */
+    }
+
+    #app {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang konten dengan transparansi */
+      padding: 20px; /* Ruang di sekitar konten */
+      border-radius: 8px; /* Sudut border */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+    }
+
+    .red-text {
+      color: red;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1 :class="{ 'red-text': isRed, 'italic': isItalic }">Selamat datang di web saya</h1>
+    <p></p>
+    <input type="text" v-model="inputText" @input="updateText">
+    <p :style="{ 'font-weight': fontWeight }">Input teks Anda: {{ inputText }}</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isRed: false,
+        isItalic: false,
+        inputText: '',
+        fontWeight: 'normal'
+      },
+      methods: {
+        updateText(event) {
+          this.inputText = event.target.value;
+          if (this.inputText.length > 10) {
+            this.isRed = true;
+            this.isItalic = true;
+            this.fontWeight = 'bold';
+          } else {
+            this.isRed = false;
+            this.isItalic = false;
+            this.fontWeight = 'normal';
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
